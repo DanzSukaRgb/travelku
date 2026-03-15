@@ -22,76 +22,91 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout
+            title="Masuk"
+            subtitle="Lanjutkan rencana perjalananmu."
+            sideTitle="Masuk ke akun Travelku"
+            sideDescription="Akses booking, lihat detail paket yang sudah dipilih, dan lanjutkan proses tanpa mulai dari awal lagi."
+            sidePoints={[
+                {
+                    title: 'Lebih cepat lanjut booking',
+                    description: 'User yang sudah punya akun bisa kembali ke paket yang diminati tanpa ribet.',
+                },
+                {
+                    title: 'Tetap terasa satu brand',
+                    description: 'Halaman login sekarang nyambung dengan tampilan public site, bukan template admin polos.',
+                },
+            ]}
+        >
             <Head title="Log in" />
 
             {status && (
-                <div className="mb-4 text-sm font-medium text-green-600">
+                <div className="mb-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
                     {status}
                 </div>
             )}
 
-            <form onSubmit={submit}>
+            <form onSubmit={submit} className="space-y-5">
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
-
                     <TextInput
                         id="email"
                         type="email"
                         name="email"
                         value={data.email}
-                        className="mt-1 block w-full"
+                        className="mt-2"
                         autoComplete="username"
+                        placeholder="nama@email.com"
                         isFocused={true}
                         onChange={(e) => setData('email', e.target.value)}
                     />
-
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
+                <div>
+                    <div className="flex items-center justify-between gap-4">
+                        <InputLabel htmlFor="password" value="Password" />
+                        {canResetPassword && (
+                            <Link
+                                href={route('password.request')}
+                                className="text-sm font-medium text-stone-500 transition hover:text-stone-900"
+                            >
+                                Lupa password?
+                            </Link>
+                        )}
+                    </div>
                     <TextInput
                         id="password"
                         type="password"
                         name="password"
                         value={data.password}
-                        className="mt-1 block w-full"
+                        className="mt-2"
                         autoComplete="current-password"
+                        placeholder="Masukkan password"
                         onChange={(e) => setData('password', e.target.value)}
                     />
-
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 block">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) =>
-                                setData('remember', e.target.checked)
-                            }
-                        />
-                        <span className="ms-2 text-sm text-gray-600">
-                            Remember me
-                        </span>
-                    </label>
-                </div>
+                <label className="flex items-center gap-3">
+                    <Checkbox
+                        name="remember"
+                        checked={data.remember}
+                        onChange={(e) => setData('remember', e.target.checked)}
+                    />
+                    <span className="text-sm text-stone-600">Tetap masuk di perangkat ini</span>
+                </label>
 
-                <div className="mt-4 flex items-center justify-end">
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        >
-                            Forgot your password?
+                <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-sm text-stone-500">
+                        Belum punya akun?{' '}
+                        <Link href={route('register')} className="font-semibold text-stone-900 hover:text-amber-700">
+                            Daftar di sini
                         </Link>
-                    )}
+                    </p>
 
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Log in
+                    <PrimaryButton className="sm:min-w-[140px]" disabled={processing}>
+                        {processing ? 'Masuk...' : 'Masuk'}
                     </PrimaryButton>
                 </div>
             </form>
