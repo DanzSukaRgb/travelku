@@ -33,17 +33,17 @@ export default function ContactSection() {
 
     return (
         <section id="contact" className="page-shell py-20">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-                <div>
+            <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+                <div className="soft-card p-6 sm:p-8">
                     <SectionHeading
                         eyebrow="Concierge contact"
-                        title="Need a custom route, team retreat, or honeymoon plan?"
-                        description="Leave a short brief and let our ops team turn it into a bookable proposal with the same clean experience."
+                        title="Need a custom route, retreat, or honeymoon plan?"
+                        description="Leave a short brief and let the team shape it into a bookable proposal. The layout here is cleaner and easier to complete, especially on mobile."
                     />
                     <div className="mt-8 space-y-4 text-sm text-slate-300">
                         <p>• Average response time under 15 minutes during business hours.</p>
                         <p>• Great for private groups, company trips, and multi-city itineraries.</p>
-                        <p>• Message stored securely in the lead dashboard for follow-up.</p>
+                        <p>• Messages are captured directly for follow-up by the ops team.</p>
                     </div>
                 </div>
                 <form onSubmit={handleSubmit} className="glass-panel rounded-[2rem] p-6 sm:p-8">
@@ -55,7 +55,8 @@ export default function ContactSection() {
                                     value={form[field]}
                                     onChange={(e) => setForm({ ...form, [field]: e.target.value })}
                                     type={field === 'email' ? 'email' : 'text'}
-                                    className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+                                    className="input-shell"
+                                    placeholder={field === 'name' ? 'Your full name' : field === 'email' ? 'you@example.com' : '+62...'}
                                     required={field !== 'phone'}
                                 />
                             </label>
@@ -65,7 +66,7 @@ export default function ContactSection() {
                             <select
                                 value={form.interest}
                                 onChange={(e) => setForm({ ...form, interest: e.target.value })}
-                                className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+                                className="input-shell"
                             >
                                 <option>Tailor-made trip</option>
                                 <option>Group tour</option>
@@ -79,14 +80,18 @@ export default function ContactSection() {
                                 value={form.message}
                                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                                 rows="5"
-                                className="w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white focus:border-cyan-400 focus:outline-none"
+                                className="input-shell"
+                                placeholder="Tell us destination, travel style, and rough dates."
                                 required
                             />
                         </label>
                     </div>
-                    <button disabled={loading} className="mt-6 rounded-full bg-white px-6 py-3 font-semibold text-slate-950 disabled:opacity-60">
-                        {loading ? 'Sending...' : 'Send inquiry'}
-                    </button>
+                    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <button disabled={loading} className="rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:-translate-y-0.5 disabled:opacity-60">
+                            {loading ? 'Sending...' : 'Send inquiry'}
+                        </button>
+                        <p className="text-sm text-slate-400">No long form. Just enough for a fast follow-up.</p>
+                    </div>
                     {status.message ? (
                         <p className={`mt-4 text-sm ${status.type === 'success' ? 'text-emerald-300' : 'text-rose-300'}`}>{status.message}</p>
                     ) : null}

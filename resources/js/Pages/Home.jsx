@@ -12,8 +12,9 @@ export default function Home(props) {
             <DestinationGrid destinations={props.destinations} />
             <PackageShowcase
                 packages={props.featuredPackages}
-                title="Signature journeys with fewer compromises"
-                description="All packages are stored in the same backend your ops team can manage later from the dashboard."
+                eyebrow="Ready-to-book picks"
+                title="Signature journeys that feel easier to choose."
+                description="Clear pricing, stronger visual hierarchy, and fewer dead ends so visitors can move from interest to booking faster."
             />
             <TestimonialSection testimonials={props.testimonials} />
             <ContactSection />

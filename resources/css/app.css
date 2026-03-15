@@ -6,8 +6,12 @@
     color-scheme: light;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    @apply bg-slate-950 text-slate-100;
+    @apply bg-slate-950 text-slate-100 antialiased;
     font-family: 'Figtree', system-ui, sans-serif;
     background-image:
         radial-gradient(circle at top, rgba(14, 165, 233, 0.18), transparent 30%),
@@ -19,7 +23,7 @@ body {
 }
 
 .glass-panel {
-    @apply border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-cyan-950/20;
+    @apply border border-white/10 bg-white/[0.06] backdrop-blur-xl shadow-2xl shadow-cyan-950/20;
 }
 
 .page-shell {
@@ -28,4 +32,17 @@ body {
 
 .gradient-text {
     @apply bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-300 bg-clip-text text-transparent;
+}
+
+.soft-card {
+    @apply rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20;
+}
+
+.section-subtle-grid {
+    background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+}
+
+.input-shell {
+    @apply w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-4 focus:ring-cyan-400/10;
 }
