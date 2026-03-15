@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    color-scheme: light;
+}
+
+body {
+    @apply bg-slate-950 text-slate-100;
+    font-family: 'Figtree', system-ui, sans-serif;
+    background-image:
+        radial-gradient(circle at top, rgba(14, 165, 233, 0.18), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 25%);
+}
+
+::selection {
+    @apply bg-cyan-300 text-slate-950;
+}
+
+.glass-panel {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-cyan-950/20;
+}
+
+.page-shell {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+}
+
+.gradient-text {
+    @apply bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-300 bg-clip-text text-transparent;
+}
