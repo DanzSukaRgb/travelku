@@ -32,37 +32,37 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="page-shell py-20">
+        <section id="contact" className="page-shell py-16 sm:py-20">
             <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="soft-card p-6 sm:p-8">
                     <SectionHeading
-                        eyebrow="Concierge contact"
-                        title="Need a custom route, retreat, or honeymoon plan?"
-                        description="Leave a short brief and let the team shape it into a bookable proposal. The layout here is cleaner and easier to complete, especially on mobile."
+                        eyebrow="Butuh bantuan pilih?"
+                        title="Kalau mau rute yang lebih cocok, tinggal cerita singkat aja."
+                        description="Form ini dibuat ringkas supaya orang nggak capek duluan. Cukup isi kebutuhan dasarnya, nanti tim lanjut bantuin."
                     />
-                    <div className="mt-8 space-y-4 text-sm text-slate-300">
-                        <p>• Average response time under 15 minutes during business hours.</p>
-                        <p>• Great for private groups, company trips, and multi-city itineraries.</p>
-                        <p>• Messages are captured directly for follow-up by the ops team.</p>
+                    <div className="mt-8 space-y-4 text-sm text-stone-600">
+                        <p>• Cocok untuk honeymoon, family trip, outing kantor, atau itinerary custom.</p>
+                        <p>• Bisa dipakai kalau masih bingung mau pilih paket yang mana.</p>
+                        <p>• Pesan masuk tetap rapi ke sistem untuk follow-up tim.</p>
                     </div>
                 </div>
-                <form onSubmit={handleSubmit} className="glass-panel rounded-[2rem] p-6 sm:p-8">
+                <form onSubmit={handleSubmit} className="glass-panel p-6 sm:p-8">
                     <div className="grid gap-4 sm:grid-cols-2">
                         {['name', 'email', 'phone'].map((field) => (
                             <label key={field} className={field === 'phone' ? 'sm:col-span-2' : ''}>
-                                <span className="mb-2 block text-sm text-slate-300">{field.replace(/^./, (s) => s.toUpperCase())}</span>
+                                <span className="mb-2 block text-sm text-stone-700">{field.replace(/^./, (s) => s.toUpperCase())}</span>
                                 <input
                                     value={form[field]}
                                     onChange={(e) => setForm({ ...form, [field]: e.target.value })}
                                     type={field === 'email' ? 'email' : 'text'}
                                     className="input-shell"
-                                    placeholder={field === 'name' ? 'Your full name' : field === 'email' ? 'you@example.com' : '+62...'}
+                                    placeholder={field === 'name' ? 'Nama lengkap' : field === 'email' ? 'nama@email.com' : '+62...'}
                                     required={field !== 'phone'}
                                 />
                             </label>
                         ))}
                         <label className="sm:col-span-2">
-                            <span className="mb-2 block text-sm text-slate-300">Interest</span>
+                            <span className="mb-2 block text-sm text-stone-700">Kebutuhan</span>
                             <select
                                 value={form.interest}
                                 onChange={(e) => setForm({ ...form, interest: e.target.value })}
@@ -75,25 +75,25 @@ export default function ContactSection() {
                             </select>
                         </label>
                         <label className="sm:col-span-2">
-                            <span className="mb-2 block text-sm text-slate-300">Message</span>
+                            <span className="mb-2 block text-sm text-stone-700">Ceritain singkat</span>
                             <textarea
                                 value={form.message}
                                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                                 rows="5"
                                 className="input-shell"
-                                placeholder="Tell us destination, travel style, and rough dates."
+                                placeholder="Mau ke mana, berangkat kapan, dan gaya trip seperti apa."
                                 required
                             />
                         </label>
                     </div>
                     <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                        <button disabled={loading} className="rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:-translate-y-0.5 disabled:opacity-60">
-                            {loading ? 'Sending...' : 'Send inquiry'}
+                        <button disabled={loading} className="rounded-full bg-stone-900 px-6 py-3 font-semibold text-white transition hover:bg-stone-800 disabled:opacity-60">
+                            {loading ? 'Mengirim...' : 'Kirim pertanyaan'}
                         </button>
-                        <p className="text-sm text-slate-400">No long form. Just enough for a fast follow-up.</p>
+                        <p className="text-sm text-stone-500">Nggak perlu isi panjang-panjang.</p>
                     </div>
                     {status.message ? (
-                        <p className={`mt-4 text-sm ${status.type === 'success' ? 'text-emerald-300' : 'text-rose-300'}`}>{status.message}</p>
+                        <p className={`mt-4 text-sm ${status.type === 'success' ? 'text-emerald-600' : 'text-rose-600'}`}>{status.message}</p>
                     ) : null}
                 </form>
             </div>

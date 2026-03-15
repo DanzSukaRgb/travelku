@@ -2,10 +2,10 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 
 const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'Packages', href: '/packages' },
+    { label: 'Beranda', href: '/' },
+    { label: 'Paket', href: '/packages' },
     { label: 'Dashboard', href: '/dashboard' },
-    { label: 'Login', href: '/login' },
+    { label: 'Masuk', href: '/login' },
 ];
 
 export default function MainLayout({ title, children }) {
@@ -17,7 +17,7 @@ export default function MainLayout({ title, children }) {
     const visibleNavItems = useMemo(
         () =>
             navItems
-                .filter((item) => item.label !== 'Login' || !auth.user)
+                .filter((item) => item.label !== 'Masuk' || !auth.user)
                 .filter((item) => item.label !== 'Dashboard' || auth.user),
         [auth.user],
     );
@@ -27,18 +27,18 @@ export default function MainLayout({ title, children }) {
     return (
         <>
             <Head title={title} />
-            <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.18),transparent_38%)]" />
-                <div className="pointer-events-none absolute right-0 top-1/3 h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-3xl" />
-                <div className="pointer-events-none absolute left-0 top-2/3 h-[24rem] w-[24rem] rounded-full bg-cyan-400/10 blur-3xl" />
+            <div className="relative min-h-screen overflow-hidden bg-stone-50 text-stone-800">
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.12),transparent_35%)]" />
+                <div className="pointer-events-none absolute right-0 top-1/4 h-[24rem] w-[24rem] rounded-full bg-sky-100 blur-3xl" />
+                <div className="pointer-events-none absolute left-0 top-2/3 h-[18rem] w-[18rem] rounded-full bg-amber-100 blur-3xl" />
 
-                <header className="sticky top-0 z-40 border-b border-white/10 bg-slate-950/70 backdrop-blur-2xl">
+                <header className="sticky top-0 z-40 border-b border-stone-200/80 bg-stone-50/90 backdrop-blur-xl">
                     <div className="page-shell flex items-center justify-between py-4">
                         <Link href="/" className="flex items-center gap-3">
-                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300 via-sky-400 to-violet-400 text-lg font-black text-slate-950 shadow-lg shadow-cyan-500/20">T</div>
+                            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-500 text-lg font-black text-white">T</div>
                             <div>
-                                <p className="text-lg font-semibold text-white">Travelku</p>
-                                <p className="text-xs uppercase tracking-[0.25em] text-slate-400">Easy luxury travel</p>
+                                <p className="text-lg font-semibold text-stone-900">Travelku</p>
+                                <p className="text-xs uppercase tracking-[0.22em] text-stone-500">Teman rencana jalan-jalan</p>
                             </div>
                         </Link>
 
@@ -49,8 +49,8 @@ export default function MainLayout({ title, children }) {
                                     href={item.href}
                                     className={`rounded-full px-4 py-2 text-sm transition ${
                                         isActive(item.href)
-                                            ? 'bg-white text-slate-950 shadow-lg shadow-white/10'
-                                            : 'text-slate-300 hover:bg-white/5 hover:text-white'
+                                            ? 'bg-stone-900 text-white'
+                                            : 'text-stone-600 hover:bg-white hover:text-stone-900'
                                     }`}
                                 >
                                     {item.label}
@@ -58,16 +58,16 @@ export default function MainLayout({ title, children }) {
                             ))}
                             <Link
                                 href={auth.user ? '/packages' : '/register'}
-                                className="ml-2 rounded-full bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-300"
+                                className="ml-2 rounded-full bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-600"
                             >
-                                {auth.user ? 'Book now' : 'Create account'}
+                                {auth.user ? 'Pesan sekarang' : 'Buat akun'}
                             </Link>
                         </nav>
 
                         <button
                             type="button"
                             onClick={() => setMenuOpen((value) => !value)}
-                            className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/5 p-3 text-white md:hidden"
+                            className="inline-flex items-center justify-center rounded-2xl border border-stone-200 bg-white p-3 text-stone-700 md:hidden"
                             aria-label="Toggle navigation"
                         >
                             <span className="space-y-1.5">
@@ -80,7 +80,7 @@ export default function MainLayout({ title, children }) {
 
                     {menuOpen ? (
                         <div className="page-shell pb-4 md:hidden">
-                            <div className="glass-panel rounded-3xl p-3">
+                            <div className="soft-card p-3">
                                 <div className="grid gap-2">
                                     {visibleNavItems.map((item) => (
                                         <Link
@@ -89,8 +89,8 @@ export default function MainLayout({ title, children }) {
                                             onClick={() => setMenuOpen(false)}
                                             className={`rounded-2xl px-4 py-3 text-sm ${
                                                 isActive(item.href)
-                                                    ? 'bg-white text-slate-950'
-                                                    : 'text-slate-200 hover:bg-white/5'
+                                                    ? 'bg-stone-900 text-white'
+                                                    : 'text-stone-700 hover:bg-white'
                                             }`}
                                         >
                                             {item.label}
@@ -100,9 +100,9 @@ export default function MainLayout({ title, children }) {
                                 <Link
                                     href={auth.user ? '/packages' : '/register'}
                                     onClick={() => setMenuOpen(false)}
-                                    className="mt-3 block rounded-2xl bg-cyan-400 px-4 py-3 text-center text-sm font-semibold text-slate-950"
+                                    className="mt-3 block rounded-2xl bg-amber-500 px-4 py-3 text-center text-sm font-semibold text-white"
                                 >
-                                    {auth.user ? 'Book now' : 'Create account'}
+                                    {auth.user ? 'Pesan sekarang' : 'Buat akun'}
                                 </Link>
                             </div>
                         </div>
@@ -111,20 +111,20 @@ export default function MainLayout({ title, children }) {
 
                 <main className="relative z-10">{children}</main>
 
-                <footer className="relative z-10 border-t border-white/10 py-12">
+                <footer className="relative z-10 mt-8 border-t border-stone-200 py-12">
                     <div className="page-shell grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-end">
                         <div>
-                            <p className="text-base font-semibold text-white">Travelku</p>
-                            <p className="mt-2 max-w-xl text-sm leading-6 text-slate-400">
-                                Travel planning that looks polished, feels clear, and helps people move from browsing to booking without friction.
+                            <p className="text-base font-semibold text-stone-900">Travelku</p>
+                            <p className="mt-2 max-w-xl text-sm leading-6 text-stone-600">
+                                Bantu orang lebih cepat pindah dari lihat-lihat ke booking, tanpa tampilan yang terasa terlalu ribet atau terlalu mesin.
                             </p>
                         </div>
                         <div className="flex flex-wrap gap-3 md:justify-end">
-                            <Link href="/packages" className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white">Explore packages</Link>
+                            <Link href="/packages" className="rounded-full border border-stone-300 px-4 py-2 text-sm text-stone-700 transition hover:bg-white">Lihat paket</Link>
                             {auth.user ? (
-                                <Link href="/dashboard" className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white">Dashboard</Link>
+                                <Link href="/dashboard" className="rounded-full border border-stone-300 px-4 py-2 text-sm text-stone-700 transition hover:bg-white">Dashboard</Link>
                             ) : (
-                                <Link href="/login" className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 transition hover:bg-white/5 hover:text-white">Login</Link>
+                                <Link href="/login" className="rounded-full border border-stone-300 px-4 py-2 text-sm text-stone-700 transition hover:bg-white">Masuk</Link>
                             )}
                         </div>
                     </div>

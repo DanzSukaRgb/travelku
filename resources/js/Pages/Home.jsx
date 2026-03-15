@@ -12,9 +12,9 @@ export default function Home(props) {
             <DestinationGrid destinations={props.destinations} />
             <PackageShowcase
                 packages={props.featuredPackages}
-                eyebrow="Ready-to-book picks"
-                title="Signature journeys that feel easier to choose."
-                description="Clear pricing, stronger visual hierarchy, and fewer dead ends so visitors can move from interest to booking faster."
+                eyebrow="Paket unggulan"
+                title="Pilihan perjalanan yang enak dilihat dan gampang dipilih."
+                description="Fokusnya bukan gaya yang terlalu futuristik, tapi halaman travel yang rapi, meyakinkan, dan cepat dipahami calon pelanggan."
             />
             <TestimonialSection testimonials={props.testimonials} />
             <ContactSection />

@@ -36,35 +36,35 @@ export default function BookingForm({ travelPackage }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="glass-panel rounded-[2rem] p-6 sm:p-7 lg:sticky lg:top-24">
+        <form onSubmit={handleSubmit} className="glass-panel p-6 sm:p-7 lg:sticky lg:top-24">
             <div className="flex items-start justify-between gap-4">
                 <div>
-                    <h3 className="text-2xl font-semibold text-white">Book this package</h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-400">Pick a date, share the traveler details, and let Travelku confirm availability.</p>
+                    <h3 className="text-2xl font-semibold text-stone-900">Pesan paket ini</h3>
+                    <p className="mt-2 text-sm leading-6 text-stone-600">Isi tanggal dan data dasar dulu. Nanti tim akan konfirmasi ketersediaannya.</p>
                 </div>
-                <span className="rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-200">Fast request</span>
+                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">Ringkas</span>
             </div>
 
-            <div className="mt-5 rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-4">
+            <div className="mt-5 rounded-[1.5rem] border border-stone-200 bg-stone-50 p-4">
                 <div className="flex items-center justify-between gap-4 text-sm">
-                    <span className="text-slate-400">Starting from</span>
-                    <span className="font-semibold text-white">IDR {Number(travelPackage.discount_price || travelPackage.price).toLocaleString('id-ID')}</span>
+                    <span className="text-stone-500">Harga mulai</span>
+                    <span className="font-semibold text-stone-900">IDR {Number(travelPackage.discount_price || travelPackage.price).toLocaleString('id-ID')}</span>
                 </div>
                 <div className="mt-2 flex items-center justify-between gap-4 text-sm">
-                    <span className="text-slate-400">Estimated total</span>
-                    <span className="font-semibold text-cyan-300">IDR {estimatedTotal.toLocaleString('id-ID')}</span>
+                    <span className="text-stone-500">Perkiraan total</span>
+                    <span className="font-semibold text-amber-700">IDR {estimatedTotal.toLocaleString('id-ID')}</span>
                 </div>
             </div>
 
             <div className="mt-6 grid gap-4">
                 {[
-                    ['customer_name', 'Full name', 'text', 'Your full name'],
-                    ['customer_email', 'Email address', 'email', 'you@example.com'],
-                    ['customer_phone', 'WhatsApp / phone', 'text', '+62...'],
-                    ['travel_date', 'Preferred departure date', 'date', ''],
+                    ['customer_name', 'Nama lengkap', 'text', 'Nama lengkap'],
+                    ['customer_email', 'Email', 'email', 'nama@email.com'],
+                    ['customer_phone', 'WhatsApp / telepon', 'text', '+62...'],
+                    ['travel_date', 'Tanggal berangkat yang diinginkan', 'date', ''],
                 ].map(([key, label, type, placeholder]) => (
                     <label key={key}>
-                        <span className="mb-2 block text-sm text-slate-300">{label}</span>
+                        <span className="mb-2 block text-sm text-stone-700">{label}</span>
                         <input
                             type={type}
                             value={form[key]}
@@ -76,7 +76,7 @@ export default function BookingForm({ travelPackage }) {
                     </label>
                 ))}
                 <label>
-                    <span className="mb-2 block text-sm text-slate-300">Travelers</span>
+                    <span className="mb-2 block text-sm text-stone-700">Jumlah traveler</span>
                     <input
                         type="number"
                         min="1"
@@ -86,25 +86,25 @@ export default function BookingForm({ travelPackage }) {
                         className="input-shell"
                         required
                     />
-                    <p className="mt-2 text-xs text-slate-500">Recommended max group size: {travelPackage.group_size} travelers.</p>
+                    <p className="mt-2 text-xs text-stone-500">Maksimal rekomendasi untuk paket ini: {travelPackage.group_size} orang.</p>
                 </label>
                 <label>
-                    <span className="mb-2 block text-sm text-slate-300">Special request</span>
+                    <span className="mb-2 block text-sm text-stone-700">Catatan tambahan</span>
                     <textarea
                         value={form.special_request}
                         onChange={(e) => setForm({ ...form, special_request: e.target.value })}
                         rows="4"
                         className="input-shell"
-                        placeholder="Optional: dietary needs, room preferences, celebration notes, etc."
+                        placeholder="Misalnya: kamar twin, kebutuhan makanan, atau request khusus lain."
                     />
                 </label>
             </div>
-            <button disabled={loading} className="mt-6 w-full rounded-full bg-cyan-400 px-5 py-3.5 font-semibold text-slate-950 transition hover:-translate-y-0.5 disabled:opacity-60">
-                {loading ? 'Processing...' : 'Confirm booking request'}
+            <button disabled={loading} className="mt-6 w-full rounded-full bg-stone-900 px-5 py-3.5 font-semibold text-white transition hover:bg-stone-800 disabled:opacity-60">
+                {loading ? 'Memproses...' : 'Ajukan booking'}
             </button>
-            <p className="mt-3 text-center text-xs text-slate-500">You submit the request here. Final confirmation still depends on live availability.</p>
+            <p className="mt-3 text-center text-xs text-stone-500">Pengajuan masuk dulu, lalu tim akan bantu konfirmasi jadwal dan detailnya.</p>
             {feedback.message ? (
-                <p className={`mt-4 text-sm ${feedback.type === 'success' ? 'text-emerald-300' : 'text-rose-300'}`}>{feedback.message}</p>
+                <p className={`mt-4 text-sm ${feedback.type === 'success' ? 'text-emerald-600' : 'text-rose-600'}`}>{feedback.message}</p>
             ) : null}
         </form>
     );

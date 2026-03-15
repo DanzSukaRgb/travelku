@@ -11,19 +11,19 @@ html {
 }
 
 body {
-    @apply bg-slate-950 text-slate-100 antialiased;
+    @apply bg-stone-50 text-stone-800 antialiased;
     font-family: 'Figtree', system-ui, sans-serif;
     background-image:
-        radial-gradient(circle at top, rgba(14, 165, 233, 0.18), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 25%);
+        radial-gradient(circle at top, rgba(245, 158, 11, 0.08), transparent 28%),
+        radial-gradient(circle at right, rgba(14, 165, 233, 0.06), transparent 24%);
 }
 
 ::selection {
-    @apply bg-cyan-300 text-slate-950;
+    @apply bg-amber-200 text-stone-900;
 }
 
 .glass-panel {
-    @apply border border-white/10 bg-white/[0.06] backdrop-blur-xl shadow-2xl shadow-cyan-950/20;
+    @apply rounded-[2rem] border border-stone-200 bg-white shadow-sm;
 }
 
 .page-shell {
@@ -31,18 +31,18 @@ body {
 }
 
 .gradient-text {
-    @apply bg-gradient-to-r from-cyan-300 via-sky-400 to-violet-300 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-amber-600 via-orange-500 to-sky-600 bg-clip-text text-transparent;
 }
 
 .soft-card {
-    @apply rounded-[2rem] border border-white/10 bg-slate-900/70 shadow-xl shadow-black/20;
+    @apply rounded-[2rem] border border-stone-200 bg-stone-100/80 shadow-sm;
 }
 
 .section-subtle-grid {
-    background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(28,25,23,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(28,25,23,0.04) 1px, transparent 1px);
     background-size: 32px 32px;
 }
 
 .input-shell {
-    @apply w-full rounded-2xl border border-white/10 bg-slate-950/70 px-4 py-3 text-white transition placeholder:text-slate-500 focus:border-cyan-400 focus:outline-none focus:ring-4 focus:ring-cyan-400/10;
+    @apply w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 text-stone-800 transition placeholder:text-stone-400 focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-100;
 }
